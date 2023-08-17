@@ -29,6 +29,12 @@ function deleteTodo(id) {
     router.delete(`/${id}`)
 }
 
+
+function todoFilter(filter) {
+    router.get(`/?filter=${filter}`)
+}
+
+
 </script>
 
 <template>
@@ -45,6 +51,12 @@ function deleteTodo(id) {
         </form>
 
         <section class="xl:w-[600px] w-[350px] md:w-[400px]">
+            <section class="flex justify-around mb-5">
+                <span>Filter:</span>
+                <button class="btn btn-outline btn-xs" @click="todoFilter('All')" type="button">All</button>
+                <button class="btn btn-outline btn-xs" @click="todoFilter('Completed')" type="button">Completed</button>
+                <button class="btn btn-outline btn-xs" @click="todoFilter('Uncompleted')" type="button">Uncompleted</button>
+            </section>
             <div v-for="(todo, index) in todos" :key="index">
                 <div class="p-5 mb-10 overflow-hidden rounded-md shadow bg-slate-100">
                     <div class="flex justify-between">

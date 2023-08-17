@@ -8,12 +8,18 @@ use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
-    function index()
+    function index(request $request)
     {
         $todos = Todo::orderBy('created_at', 'desc')->get();
 
+        if ($request->filter == 'Completed') {
+            $todos = Todo::where('completed', true)->orderBy('created_at', 'desc')->get();
+        } else if ($request->filter == 'Uncompleted') {
+            $todos = Todo::where('completed', false)->orderBy('created_at', 'desc')->get();
+        }
+
         return Inertia::render('home', [
-            'todos' => $todos
+            'todos' => $todos,
         ]);
     }
 
