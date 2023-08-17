@@ -18,6 +18,12 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
-        'title' => 'Welcome',
+        'todos' => [
+            ['id' => 1, 'task' => 'Go to the store', 'completed' => false],
+            ['id' => 2, 'task' => 'Go to the college', 'completed' => true],
+            ['id' => 3, 'task' => 'Go to the work', 'completed' => false],
+            ['id' => 4, 'task' => 'Go to the gym', 'completed' => false],
+            ['id' => 5, 'task' => 'Go to the home', 'completed' => false],
+        ]
     ]);
 });
